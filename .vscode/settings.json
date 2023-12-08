@@ -1,6 +1,7 @@
 {
     "[javascript][typescript][javascriptreact][typescriptreact]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
         "editor.formatOnSave": true,
+        "editor.formatOnSaveMode": "file"
     }
 }

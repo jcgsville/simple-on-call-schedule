@@ -1,39 +1,7 @@
-# Welcome to Remix!
+# Notes on dependencies
 
--   [Remix Docs](https://remix.run/docs)
+- Typescript pinned below 5.2.0 due to lack of eslint support as of 2023-12-07
 
-## Development
+# Notes on VS Code workspace configuration
 
-From your terminal:
-
-```sh
-npm run dev
-```
-
-This starts your app in development mode, rebuilding assets on file changes.
-
-## Deployment
-
-First, build your app for production:
-
-```sh
-npm run build
-```
-
-Then run the app in production mode:
-
-```sh
-npm start
-```
-
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying node applications, the built-in Remix app
-server is production-ready.
-
-Make sure to deploy the output of `remix build`
-
--   `build/`
--   `public/build/`
+- Using beta prettier-eslint VS Code extension linked [here](https://github.com/idahogurl/vs-code-prettier-eslint/issues/171#issuecomment-1836665599)
