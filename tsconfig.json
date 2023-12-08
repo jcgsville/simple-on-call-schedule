@@ -1,0 +1,36 @@
+{
+    "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
+    // Compiler options inspired by https://www.totaltypescript.com/tsconfig-cheat-sheet
+    "compilerOptions": {
+        // Base options
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "target": "es2022",
+        "allowJs": true,
+        "resolveJsonModule": true,
+        "moduleDetection": "force",
+        "isolatedModules": true,
+
+        // Strictness options
+        "strict": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUncheckedIndexedAccess": true,
+        "forceConsistentCasingInFileNames": true,
+
+        // Related to Remix / React
+        "lib": ["es2022", "dom", "dom.iterable"],
+        "jsx": "react-jsx",
+        "moduleResolution": "Bundler",
+        "module": "ESNext",
+        // Remix takes care of building everything in `remix build`.
+        "noEmit": true,
+
+        "baseUrl": ".",
+        "paths": {
+            "~/*": ["./app/*"]
+        }
+    }
+}
