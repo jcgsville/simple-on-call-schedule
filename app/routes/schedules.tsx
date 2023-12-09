@@ -1,9 +1,9 @@
+import type { LoaderFunction} from '@remix-run/node';
 import { json } from '@remix-run/node'
 import { Form, useLoaderData } from '@remix-run/react'
-import { createEmptySchedule } from '~/data/create-empty-schedule'
-import { getAllSchedules } from '~/data/get-all-schedules'
+import { createEmptySchedule } from '~/control-plane/create-empty-schedule'
 
-export const loader = async () => {
+export const loader: LoaderFunction = async ({ context }) => {
     const schedules = await getAllSchedules()
     console.log('bs', schedules)
     return json({ schedules })

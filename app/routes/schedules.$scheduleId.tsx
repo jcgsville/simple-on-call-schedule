@@ -1,8 +1,8 @@
-import type { LoaderFunction} from '@remix-run/node';
+import type { LoaderFunction } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import invariant from 'tiny-invariant'
-import { getScheduleById } from '~/data/get-schedule-by-id'
+import { getScheduleById } from '~/data-store-interface/get-schedule-by-id'
 
 export const loader: LoaderFunction = async ({ params }) => {
     invariant(params.scheduleId, 'Missing scheduleId param')
