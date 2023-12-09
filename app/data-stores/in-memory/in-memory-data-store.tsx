@@ -1,10 +1,10 @@
 import type { DataStoreInterface } from '~/data-stores/data-store-interface'
 import type { Schedule } from '~/models/Schedule'
 
-let schedules: Schedule[]
+let schedules: Schedule[] = []
 
 export const InMemoryDataStore: DataStoreInterface = {
-    initialize: async () => {},
+    initialize: async (): Promise<DataStoreInterface> => InMemoryDataStore,
     getAllSchedules: async () => {
         return schedules
     },
