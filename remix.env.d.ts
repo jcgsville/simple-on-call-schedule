@@ -1,9 +1,10 @@
 /// <reference types="@remix-run/dev" />
 import type { AppLoadContext as OriginalAppLoadContext } from '@remix-run/node'
-import type { DataStoreInterface } from '~/data-stores/data-store-interface'
+import type { DataStorePlugin } from '~/plugins/data-store/data-store-plugin'
 
 declare module '@remix-run/node' {
     export interface AppLoadContext extends OriginalAppLoadContext {
-        dataStore: DataStoreInterface
+        dataStore: DataStorePlugin
+        logger: LoggerPlugin
     }
 }

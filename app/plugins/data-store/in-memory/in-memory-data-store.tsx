@@ -1,10 +1,10 @@
-import type { DataStoreInterface } from '~/data-stores/data-store-interface'
+import type { DataStorePlugin } from '~/plugins/data-store/data-store-plugin'
 import type { Schedule } from '~/models/Schedule'
 
 let schedules: Schedule[] = []
 
-export const InMemoryDataStore: DataStoreInterface = {
-    initialize: async (): Promise<DataStoreInterface> => InMemoryDataStore,
+export const InMemoryDataStore: DataStorePlugin = {
+    initialize: async (): Promise<DataStorePlugin> => InMemoryDataStore,
     getAllSchedules: async () => {
         return schedules
     },

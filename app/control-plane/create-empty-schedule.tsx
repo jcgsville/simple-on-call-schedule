@@ -1,9 +1,9 @@
 import { v4 } from 'uuid'
-import type { DataStoreInterface } from '~/data-stores/data-store-interface'
+import type { DataStorePlugin } from '~/plugins/data-store/data-store-plugin'
 import type { Schedule } from '~/models/Schedule'
 
 export const createEmptySchedule = async (
-    store: DataStoreInterface,
+    store: DataStorePlugin,
 ): Promise<Schedule> => {
     const schedule: Schedule = {
         id: v4(),

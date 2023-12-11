@@ -6,11 +6,12 @@ import { createRequestHandler } from '@remix-run/express'
 import { broadcastDevReady, installGlobals } from '@remix-run/node'
 // import compression from "compression";
 import express from 'express'
-import { InMemoryDataStore } from '~/data-stores/in-memory/in-memory-data-store'
-// import morgan from 'morgan'
-// import sourceMapSupport from 'source-map-support'
+import { InMemoryDataStore } from '~/plugins/data-store/in-memory/in-memory-data-store'
+import sourceMapSupport from 'source-map-support'
+import { createDefaultLogger } from '~/plugins/logger/create-default-logger'
+import { generateHttpRequestLoggerMiddleware } from '~/utils/http-request-logger-middleware'
 
-// sourceMapSupport.install()
+sourceMapSupport.install()
 installGlobals()
 run()
 
@@ -21,8 +22,10 @@ async function run() {
     const VERSION_PATH = path.resolve('build/version.txt')
 
     const dataStore = await InMemoryDataStore.initialize()
+    const logger = createDefaultLogger()
     const getLoadContext = () => ({
         dataStore,
+        logger,
     })
 
     const initialBuild = await reimportServer()
@@ -35,7 +38,7 @@ async function run() {
                   getLoadContext,
               })
 
-    const app = express()
+    let app = express()
 
     // app.use(compression())
 
@@ -48,17 +51,17 @@ async function run() {
         express.static('public/build', { immutable: true, maxAge: '1y' }),
     )
 
+    app.use(generateHttpRequestLoggerMiddleware(logger))
+
     // Everything else (like favicon.ico) is cached for an hour. You may want to be
     // more aggressive with this caching.
     app.use(express.static('public', { maxAge: '1h' }))
-
-    // app.use(morgan('tiny'))
 
     app.all('*', remixHandler)
 
     const port = process.env.PORT || 3000
     app.listen(port, async () => {
-        console.log(`Express server listening on port ${port}`)
+        logger.info('Express server listening', { port })
 
         if (process.env.NODE_ENV === 'development') {
             broadcastDevReady(initialBuild)
