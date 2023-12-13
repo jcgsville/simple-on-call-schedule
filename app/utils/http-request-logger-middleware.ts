@@ -51,6 +51,6 @@ const calculateResponseTime = (
         (responseStartAt[0] - requestStartAt[0]) * 1e3 +
         (responseStartAt[1] - requestStartAt[1]) * 1e-6
 
-    // return truncated value
+    // return rounded value
     return Math.round(responseTimeInMilliseconds)
 }
