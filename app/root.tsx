@@ -1,5 +1,3 @@
-import { cssBundleHref } from '@remix-run/css-bundle'
-import type { LinksFunction } from '@remix-run/node'
 import {
     Links,
     LiveReload,
@@ -8,10 +6,7 @@ import {
     Scripts,
     ScrollRestoration,
 } from '@remix-run/react'
-
-export const links: LinksFunction = () => [
-    ...(cssBundleHref ? [{ rel: 'stylesheet', href: cssBundleHref }] : []),
-]
+import { STYLES_PLACEHOLDER } from './constants/styles-placeholder'
 
 export default function App() {
     return (
@@ -24,6 +19,10 @@ export default function App() {
                 />
                 <Meta />
                 <Links />
+                {
+                    // This is a placeholder for usage of styled components
+                    typeof document === 'undefined' ? STYLES_PLACEHOLDER : null
+                }
             </head>
             <body>
                 <Outlet />
