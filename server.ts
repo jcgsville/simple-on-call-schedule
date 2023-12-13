@@ -8,7 +8,6 @@ import { createRequestHandler } from '@remix-run/express'
 import { broadcastDevReady, installGlobals } from '@remix-run/node'
 import compression from 'compression'
 import sourceMapSupport from 'source-map-support'
-import helmet from 'helmet'
 import chokidar from 'chokidar'
 
 import { InMemoryDataStore } from '~/plugins/data-store/in-memory/in-memory-data-store'
@@ -53,7 +52,8 @@ run()
 // http://expressjs.com/en/advanced/best-practice-security.html
 const addSecurityMiddleware = (app: Express): void => {
     app.disable('x-powered-by')
-    app.use(helmet())
+    // Temporarily disable helmet, as it breaks hot module reloading
+    // app.use(helmet())
 }
 
 // Add all the Remix-specific middleware to the Express app.
