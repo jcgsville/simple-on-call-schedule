@@ -21,7 +21,7 @@ export default function Schedules() {
 
     return (
         <div>
-            <p>All schedules</p>
+            <p>All schedule9</p>
             {schedules.map((schedule: any) => (
                 <ScheduleListItem schedule={schedule} key={schedule.id} />
             ))}
@@ -39,7 +39,9 @@ const ScheduleListItem: FunctionComponent<{ schedule: Schedule }> = ({
 }) => {
     return (
         <div>
-            <StyledP>Redd: {schedule.name || '<Untitled>'}</StyledP>
+            <StyledP>Redd5: {schedule.name || '<Untitled>'}</StyledP>
+
+            <p>Not2: {schedule.name || '<Untitled>'}</p>
         </div>
     )
 }
